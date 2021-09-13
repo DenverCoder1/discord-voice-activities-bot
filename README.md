@@ -12,6 +12,16 @@ Once the bot is added, you can launch an activity with `/activity` or `dt!activi
 
 This bot makes use of [discord-together](https://github.com/apurv-r/discord-together) by apurv-r.
 
+## List of Activities
+
+The activities you can currently launch are:
+
+* **YouTube Together**
+* **Poker Night**
+* **Chess in the Park**
+* **Betrayal.io**
+* **Fishington.io**
+
 ## Environment Variables
 
 The following environment variables can be specified in a `.env` file to configure the bot:

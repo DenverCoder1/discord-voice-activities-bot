@@ -31,4 +31,4 @@ The following environment variables can be specified in a `.env` file to configu
 
 ## Add the bot
 
-Click [**here**](https://discord.com/api/oauth2/authorize?client_id=887066414723260517&permissions=277025393664&scope=bot%20applications.commands) to add the bot with the default permissions.
+Click [**here**](https://discord.com/api/oauth2/authorize?client_id=887066414723260517&permissions=3072&scope=bot%20applications.commands) to add the bot with the default permissions.

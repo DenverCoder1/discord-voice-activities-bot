@@ -4,7 +4,7 @@ from dotenv.main import load_dotenv
 
 load_dotenv()
 
-BOT_PREFIX = "dt!"
+BOT_PREFIX = ">"
 
 DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
 

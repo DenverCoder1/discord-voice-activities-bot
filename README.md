@@ -8,7 +8,7 @@ A simple slash command bot for launching Discord's activities in voice channels.
 
 ![discord-activities-bot](https://user-images.githubusercontent.com/20955511/133156951-db1ad975-c3b9-4317-964c-dc965bd3d724.gif)
 
-Once the bot is added, you can launch an activity with `/activity` or `dt!activity <name>`
+Once the bot is added, you can launch an activity with `/activity` or `>activity <name>`
 
 This bot makes use of [discord-together](https://github.com/apurv-r/discord-together) by apurv-r.
 

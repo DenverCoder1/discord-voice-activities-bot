@@ -35,10 +35,3 @@ class Activity(Enum):
             if activity.value.key == key:
                 return activity
         return None
-
-    @classmethod
-    def keys(cls) -> list[str]:
-        """
-        Get a list of all activity keys.
-        """
-        return [activity.value.key for activity in cls]

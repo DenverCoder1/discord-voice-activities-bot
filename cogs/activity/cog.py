@@ -1,4 +1,4 @@
-from typing import Optional, Union
+from typing import Union
 
 import config
 from discord.ext import commands
@@ -23,7 +23,7 @@ class DiscordTogetherCog(commands.Cog, name="Discord Together"):
                 title="Activity not found.",
                 description=(
                     "Please select one of the following activities:\n"
-                    f'{", ".join(f"`{activity}`" for activity in Activity.keys())}'
+                    f'{", ".join(f"`{activity.value.key}`" for activity in Activity)}'
                 )
             ))
         # Check that the user is in a voice channel
@@ -64,12 +64,13 @@ class DiscordTogetherCog(commands.Cog, name="Discord Together"):
         """
         Command to start a voice channel activity
 
+        Example usage:
         ```
-        dt!activity youtube
-        dt!activity poker
-        dt!activity chess
-        dt!activity betrayal
-        dt!activity fishing
+        >activity youtube
+        >activity poker
+        >activity chess
+        >activity betrayal
+        >activity fishing
         ```
         """
         await self._start_activity(ctx, activity_key)

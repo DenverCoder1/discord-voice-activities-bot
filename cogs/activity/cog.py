@@ -16,14 +16,14 @@ class DiscordTogetherCog(commands.Cog, name="Discord Together"):
         self.__dt = DiscordTogether(bot)
 
     async def _start_activity(self, ctx: Union[SlashContext, commands.Context], activity_key: str):
-        activity = Activity.get_activity_by_key(activity_key)
+        activity = Activity.get_activity(activity_key)
         # Check that the activity is valid
         if activity is None:
             return await ctx.send(embed=error_embed(
                 title="Activity not found.",
                 description=(
                     "Please select one of the following activities:\n"
-                    f'{", ".join(Activity.get_activity_keys())}'
+                    f'{", ".join(f"`{activity}`" for activity in Activity.keys())}'
                 )
             ))
         # Check that the user is in a voice channel

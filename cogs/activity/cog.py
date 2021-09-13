@@ -22,7 +22,7 @@ class DiscordTogetherCog(commands.Cog, name="Discord Together"):
             return await ctx.send(embed=error_embed(
                 title="Activity not found.",
                 description=(
-                    "Please select one of the following activities:\n"
+                    "Please specify one of the following activities:\n"
                     f'{", ".join(f"`{activity.value.key}`" for activity in Activity)}'
                 )
             ))
@@ -34,7 +34,7 @@ class DiscordTogetherCog(commands.Cog, name="Discord Together"):
             ))
         # Here we consider that the user is in a voice channel accessible to the bot
         link = await self.__dt.create_link(ctx.author.voice.channel.id, activity.value.key)
-        await ctx.send(f"Click the blue link!\n{link}")
+        await ctx.send(f"Click the blue link to start the activity!\n{link}")
 
     @cog_ext.cog_slash(
         name="activity",

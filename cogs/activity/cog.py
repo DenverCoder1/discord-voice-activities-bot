@@ -11,7 +11,7 @@ from utils.embedder import error_embed
 from .activities import Activity
 
 
-class DiscordTogetherCog(commands.Cog, name="Discord Together"):
+class VoiceActivitiesCog(commands.Cog, name="🔊 Voice Activities"):
     def __init__(self, bot: commands.Bot):
         self.__dt = DiscordTogether(bot)
 
@@ -77,4 +77,4 @@ class DiscordTogetherCog(commands.Cog, name="Discord Together"):
 
 
 def setup(client):
-    client.add_cog(DiscordTogetherCog(client))
+    client.add_cog(VoiceActivitiesCog(client))

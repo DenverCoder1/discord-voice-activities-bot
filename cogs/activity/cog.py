@@ -33,9 +33,12 @@ class VoiceActivitiesCog(commands.Cog, name="🔊 Voice Activities"):
         return {"content": f"Click the blue link to start the activity!\n{link}"}
 
     async def _send_activity_button_prompt(self, ctx: Union[SlashContext, commands.Context]) -> Tuple[Coroutine[Any, Any, None], Activity]:
+        identifier = getattr(
+            ctx.message, "id", getattr(ctx, "interaction_id", None)
+        )
         buttons = [
             create_button(style=ButtonStyle.primary,
-                          custom_id=f"DiscordVoiceActivity::{ctx.author_id}::{activity.value.key}",
+                          custom_id=f"DiscordVoiceActivity::{identifier}::{activity.value.key}",
                           label=activity.value.full_name)
             for activity in Activity
         ]
@@ -57,7 +60,7 @@ class VoiceActivitiesCog(commands.Cog, name="🔊 Voice Activities"):
             sender, activity = await self._send_activity_button_prompt(ctx)
         # send response for launching activity
         message_kwargs = await self._launch_response_kwargs(ctx, activity)
-        await sender(**message_kwargs, components=None)
+        await sender(**{"content": "", "embed": None, "components": None, **message_kwargs})
 
     @cog_ext.cog_slash(
         name="activity",

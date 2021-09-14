@@ -89,12 +89,10 @@ class VoiceActivitiesCog(commands.Cog, name="🔊 Voice Activities"):
 
         Example usage:
         ```
-        >activity youtube
-        >activity poker
-        >activity chess
-        >activity betrayal
-        >activity fishing
+        >activity
+        >activity <activity_key>
         ```
+        `activity_key`: Must be `youtube`, `poker`, `chess`, `betrayal`, or `fishing`
         """
         await self._start_activity(ctx, activity_key)
 

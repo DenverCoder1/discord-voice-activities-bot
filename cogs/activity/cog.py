@@ -60,7 +60,7 @@ class VoiceActivitiesCog(commands.Cog, name="🔊 Voice Activities"):
             sender, activity = await self._send_activity_button_prompt(ctx)
         # send response for launching activity
         message_kwargs = await self._launch_response_kwargs(ctx, activity)
-        await sender(**message_kwargs, components=None)
+        await sender(**{"content": "", "embed": None, "components": None, **message_kwargs})
 
     @cog_ext.cog_slash(
         name="activity",

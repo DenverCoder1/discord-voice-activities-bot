@@ -29,7 +29,7 @@ class Activity(Enum):
     @classmethod
     def get_activity(cls, key) -> Optional["Activity"]:
         """
-        Get an activity by key.
+        Get an activity by key
         """
         for activity in cls:
             if activity.value.key == key:

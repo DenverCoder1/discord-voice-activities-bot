@@ -20,7 +20,17 @@ class VoiceActivitiesCog(commands.Cog, name="🔊 Voice Activities"):
         self.__dt = DiscordTogether(bot)
 
     async def _launch_response_kwargs(self, ctx: Union[SlashContext, commands.Context], activity: Activity) -> Dict[str, Any]:
-        # Check that the user is in a voice channel
+        """
+        Gets the keyword arguments for the response for passing to a send or edit message function
+
+        Arguments:
+            ctx: Command or interaction context
+            activity: The activity to launch
+
+        Returns:
+            Dictionary containing the send/edit function kwargs
+        """
+        # check that the user is in a voice channel
         if ctx.author.voice is None:
             return {
                 "embed": error_embed(
@@ -28,11 +38,21 @@ class VoiceActivitiesCog(commands.Cog, name="🔊 Voice Activities"):
                     description="Please join a voice channel and try again."
                 )
             }
-        # Here we consider that the user is in a voice channel accessible to the bot
+        # here we consider that the user is in a voice channel accessible to the bot
         link = await self.__dt.create_link(ctx.author.voice.channel.id, activity.value.key)
         return {"content": f"Click the blue link to start the activity!\n{link}"}
 
     async def _send_activity_button_prompt(self, ctx: Union[SlashContext, commands.Context]) -> Tuple[Coroutine[Any, Any, None], Activity]:
+        """
+        Prompts the user with buttons to select a valid activity
+
+        Args:
+            ctx: Interaction or command context
+
+        Returns:
+            - Reference to the method for editing the response
+            - The chosen activity
+        """
         identifier = getattr(
             ctx.message, "id", getattr(ctx, "interaction_id", None)
         )
@@ -51,6 +71,15 @@ class VoiceActivitiesCog(commands.Cog, name="🔊 Voice Activities"):
         return button_ctx.edit_origin, activity
 
     async def _start_activity(self, ctx: Union[SlashContext, commands.Context], activity_key: Optional[str]):
+        """
+        Sends a link to launch and join the activity
+
+        Args:
+            ctx: Interaction or command context
+            activity_key: key for the activity (eg. `youtube`, `chess`)
+                If not specified, or an invalid key is provided, the user
+                will be prompted to select an activity with buttons.
+        """
         # method to use for sending the link
         sender: Coroutine = ctx.send
         # get the activity by the user-specified key

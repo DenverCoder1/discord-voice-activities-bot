@@ -114,18 +114,23 @@ class VoiceActivitiesCog(commands.Cog, name="🔊 Voice Activities"):
         """Slash command for starting an activity"""
         await self._start_activity(ctx, activity_key)
 
-    @commands.command()
+    @commands.command(aliases=[activity.value.key for activity in Activity])
     async def activity(self, ctx: commands.Context, activity_key: Optional[str] = None):
         """
         Command to start a voice channel activity
 
         Example usage:
-        ```
-        >activity
-        >activity <activity_key>
-        ```
-        `activity_key`: Must be `youtube`, `poker`, `chess`, `betrayal`, or `fishing`
+        `>activity` - Select from a list of activities
+        `>youtube` - Launch YouTube Together
+        `>poker` - Launch Poker Night
+        `>chess` - Launch Chess in the Park
+        `>betrayal` - Launch Betrayal.io
+        `>fishing` - Launch Fishington.io
         """
+        # if invoked with an alias, use it as the activity key
+        if ctx.invoked_with != ctx.command.name:
+            # set the activity key to the alias used
+            activity_key = ctx.invoked_with
         await self._start_activity(ctx, activity_key)
 
 

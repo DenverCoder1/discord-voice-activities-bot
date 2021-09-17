@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+from discord.ext.commands.core import Command
 
 
 class NewHelpCommand(commands.MinimalHelpCommand):
@@ -19,7 +20,6 @@ class NewHelpCommand(commands.MinimalHelpCommand):
 
     async def send_bot_help(self, mapping: dict):
         """implements bot command help page"""
-        prefix = self.clean_prefix
         embed = discord.Embed(title="Bot Commands", colour=self.COLOUR)
         embed.set_author(
             name=self.context.bot.user.name, icon_url=self.context.bot.user.avatar_url
@@ -33,7 +33,9 @@ class NewHelpCommand(commands.MinimalHelpCommand):
             filtered = await self.filter_commands(commands, sort=True)
             if filtered:
                 # \u2002 = en space
-                value = "\u2002".join(f"{prefix}{c.name}" for c in filtered)
+                value = "\u2002".join(
+                    self.__command_and_aliases_names(filtered)
+                )
                 if cog and cog.description:
                     value = f"{cog.description}\n{value}"
                 embed.add_field(name=name, value=value)
@@ -77,6 +79,15 @@ class NewHelpCommand(commands.MinimalHelpCommand):
 
         embed.set_footer(text=self.get_ending_note())
         await self.get_destination().send(embed=embed)
+
+    def __command_and_aliases_names(self, filtered: list[Command]) -> list[str]:
+        prefix = self.clean_prefix
+        names_with_aliases = []
+        for command in filtered:
+            names_with_aliases += [f"`{prefix}{command.name}`"]
+            for alias in command.aliases:
+                names_with_aliases += [f"`{prefix}{alias}`"]
+        return names_with_aliases
 
     # Use the same function as group help for command help
     send_command_help = send_group_help

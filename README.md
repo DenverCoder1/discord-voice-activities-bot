@@ -6,21 +6,26 @@ A simple slash command bot for launching Discord's activities in voice channels.
 
 [**Add the bot**](https://discord.com/api/oauth2/authorize?client_id=887066414723260517&permissions=277025393664&scope=bot%20applications.commands)
 
-![discord-activities-bot](https://user-images.githubusercontent.com/20955511/133156951-db1ad975-c3b9-4317-964c-dc965bd3d724.gif)
+![discord activities demo](https://user-images.githubusercontent.com/20955511/133156951-db1ad975-c3b9-4317-964c-dc965bd3d724.gif)
 
 Once the bot is added, you can launch an activity with `/activity` or `>activity`.
 
 This bot makes use of [discord-together](https://github.com/apurv-r/discord-together) by apurv-r.
 
-## List of Activities
+## Commands
 
-The activities you can currently launch are:
+Slash command support with `/activity`
 
-* **YouTube Together**
-* **Poker Night**
-* **Chess in the Park**
-* **Betrayal.io**
-* **Fishington.io**
+![slash command](https://user-images.githubusercontent.com/20955511/133788815-2f67757f-5092-49df-a085-a657a98830b5.png)
+
+Legacy-style commands
+
+* `>activity` - Select from a list of activities
+* `>youtube` - Launch YouTube Together
+* `>poker` - Launch Poker Night
+* `>chess` - Launch Chess in the Park
+* `>betrayal` - Launch Betrayal.io
+* `>fishing` - Launch Fishington.io
 
 ## Environment Variables
 

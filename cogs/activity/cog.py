@@ -6,7 +6,7 @@ from discord_slash import SlashContext, cog_ext
 from discord_slash.context import ComponentContext
 from discord_slash.model import ButtonStyle, SlashCommandOptionType
 from discord_slash.utils.manage_commands import create_choice, create_option
-from discord_slash.utils.manage_components import (create_actionrow,
+from discord_slash.utils.manage_components import (spread_to_rows,
                                                    create_button,
                                                    wait_for_component)
 from discordTogether import DiscordTogether
@@ -30,6 +30,14 @@ class VoiceActivitiesCog(commands.Cog, name="🔊 Voice Activities"):
         Returns:
             Dictionary containing the send/edit function kwargs
         """
+        # check that the channels are accessible
+        if not hasattr(ctx.author, "voice"):
+            return {
+                "embed": error_embed(
+                    title="Bot is missing permissions.",
+                    description="This bot requires the `View Channels` permission."
+                )
+            }
         # check that the user is in a voice channel
         if ctx.author.voice is None:
             return {
@@ -56,15 +64,15 @@ class VoiceActivitiesCog(commands.Cog, name="🔊 Voice Activities"):
         identifier = getattr(
             ctx.message, "id", getattr(ctx, "interaction_id", None)
         )
-        buttons = [
+        buttons = (
             create_button(style=ButtonStyle.primary,
                           custom_id=f"DiscordVoiceActivity::{identifier}::{activity.value.key}",
                           label=activity.value.full_name)
             for activity in Activity
-        ]
-        action_row = create_actionrow(*buttons)
-        await ctx.send(content="Please select an activity.", components=[action_row])
-        button_ctx: ComponentContext = await wait_for_component(ctx.bot, components=action_row)
+        )
+        action_rows = spread_to_rows(*buttons)
+        await ctx.send(content="Please select an activity.", components=action_rows)
+        button_ctx: ComponentContext = await wait_for_component(ctx.bot, components=action_rows)
         # get activity
         activity = Activity.get_activity(button_ctx.custom_id.split("::")[-1])
         # return the method for updating the message and the activity
@@ -126,6 +134,9 @@ class VoiceActivitiesCog(commands.Cog, name="🔊 Voice Activities"):
         `>chess` - Launch Chess in the Park
         `>betrayal` - Launch Betrayal.io
         `>fishing` - Launch Fishington.io
+        `>letter-tile` - Launch Letter Tile
+        `>word-snack` - Launch Word Snack
+        `>doodle-crew` - Launch Doodle Crew
         """
         # if invoked with an alias, use it as the activity key
         if ctx.invoked_with != ctx.command.name:

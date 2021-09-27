@@ -25,6 +25,9 @@ class Activity(Enum):
     chess = ActivityItem("chess", "Chess in the Park")
     betrayal = ActivityItem("betrayal", "Betrayal.io")
     fishing = ActivityItem("fishing", "Fishington.io")
+    letter_tile = ActivityItem("letter-tile", "Letter Tile")
+    word_snack = ActivityItem("word-snack", "Word Snack")
+    doodle_crew = ActivityItem("doodle-crew", "Doodle Crew")
 
     @classmethod
     def get_activity(cls, key) -> Optional["Activity"]:

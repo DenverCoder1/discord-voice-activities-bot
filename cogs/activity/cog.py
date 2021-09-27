@@ -30,6 +30,14 @@ class VoiceActivitiesCog(commands.Cog, name="🔊 Voice Activities"):
         Returns:
             Dictionary containing the send/edit function kwargs
         """
+        # check that the channels are accessible
+        if not hasattr(ctx.author, "voice"):
+            return {
+                "embed": error_embed(
+                    title="Bot is missing permissions.",
+                    description="This bot requires the `View Channels` permission."
+                )
+            }
         # check that the user is in a voice channel
         if ctx.author.voice is None:
             return {

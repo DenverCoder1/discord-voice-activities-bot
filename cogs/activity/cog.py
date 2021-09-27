@@ -6,7 +6,7 @@ from discord_slash import SlashContext, cog_ext
 from discord_slash.context import ComponentContext
 from discord_slash.model import ButtonStyle, SlashCommandOptionType
 from discord_slash.utils.manage_commands import create_choice, create_option
-from discord_slash.utils.manage_components import (create_actionrow,
+from discord_slash.utils.manage_components import (spread_to_rows,
                                                    create_button,
                                                    wait_for_component)
 from discordTogether import DiscordTogether
@@ -64,15 +64,15 @@ class VoiceActivitiesCog(commands.Cog, name="🔊 Voice Activities"):
         identifier = getattr(
             ctx.message, "id", getattr(ctx, "interaction_id", None)
         )
-        buttons = [
+        buttons = (
             create_button(style=ButtonStyle.primary,
                           custom_id=f"DiscordVoiceActivity::{identifier}::{activity.value.key}",
                           label=activity.value.full_name)
             for activity in Activity
-        ]
-        action_row = create_actionrow(*buttons)
-        await ctx.send(content="Please select an activity.", components=[action_row])
-        button_ctx: ComponentContext = await wait_for_component(ctx.bot, components=action_row)
+        )
+        action_rows = spread_to_rows(*buttons)
+        await ctx.send(content="Please select an activity.", components=action_rows)
+        button_ctx: ComponentContext = await wait_for_component(ctx.bot, components=action_rows)
         # get activity
         activity = Activity.get_activity(button_ctx.custom_id.split("::")[-1])
         # return the method for updating the message and the activity

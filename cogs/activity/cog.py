@@ -134,6 +134,9 @@ class VoiceActivitiesCog(commands.Cog, name="🔊 Voice Activities"):
         `>chess` - Launch Chess in the Park
         `>betrayal` - Launch Betrayal.io
         `>fishing` - Launch Fishington.io
+        `>letter-tile` - Launch Letter Tile
+        `>word-snack` - Launch Word Snack
+        `>doodle-crew` - Launch Doodle Crew
         """
         # if invoked with an alias, use it as the activity key
         if ctx.invoked_with != ctx.command.name:

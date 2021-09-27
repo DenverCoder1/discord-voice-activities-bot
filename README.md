@@ -26,6 +26,9 @@ Legacy-style commands
 * `>chess` - Launch Chess in the Park
 * `>betrayal` - Launch Betrayal.io
 * `>fishing` - Launch Fishington.io
+* `>letter-tile` - Launch Letter Tile
+* `>word-snack` - Launch Word Snack
+* `>doodle-crew` - Launch Doodle Crew
 * `>help` - Shows help for legacy-style commands
 
 ## Environment Variables

@@ -1,4 +1,4 @@
 discord.py==1.7.3
 python-dotenv==0.19.1
 discord-py-slash-command==3.0.1
-discord-together==1.1.2
+discord-together==1.2.1

@@ -1,9 +1,9 @@
 from typing import Optional, Union
 
-import discord
-from discord.embeds import EmptyEmbed, _EmptyEmbed
+import nextcord
+from nextcord.embeds import EmptyEmbed, _EmptyEmbed
 
-DEFAULT_COLOUR = discord.Color.blurple
+DEFAULT_COLOUR = nextcord.Color.blurple
 
 
 def __trim(text: str, limit: int) -> str:
@@ -11,11 +11,11 @@ def __trim(text: str, limit: int) -> str:
     return text[: limit - 3].strip() + "..." if len(text) > limit else text
 
 
-def error_embed(title: str, description: Optional[str] = None) -> discord.Embed:
+def error_embed(title: str, description: Optional[str] = None) -> nextcord.Embed:
     """Embed a message with a title and a red highlight"""
     # create the embed
     return build_embed(
-        title=title, description=description, colour=discord.Colour.red()
+        title=title, description=description, colour=nextcord.Colour.red()
     )
 
 
@@ -26,11 +26,11 @@ def build_embed(
     image: Optional[str] = None,
     thumbnail: Optional[str] = None,
     url: Union[str, _EmptyEmbed] = EmptyEmbed,
-    colour: discord.Colour = DEFAULT_COLOUR,
-) -> discord.Embed:
+    colour: nextcord.Colour = DEFAULT_COLOUR,
+) -> nextcord.Embed:
     """Embed a message and an optional description, footer, and url"""
     # create the embed
-    embed = discord.Embed(title=__trim(title, 256), url=url, colour=colour)
+    embed = nextcord.Embed(title=__trim(title, 256), url=url, colour=colour)
     if description:
         embed.description = __trim(description, 2048)
     if footer:

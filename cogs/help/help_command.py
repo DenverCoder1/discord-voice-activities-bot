@@ -1,16 +1,16 @@
-import discord
-from discord.ext import commands
-from discord.ext.commands.core import Command
+import nextcord
+from nextcord.ext import commands
+from nextcord.ext.commands.core import Command
 
 
 class NewHelpCommand(commands.MinimalHelpCommand):
     """Custom help command override using embeds"""
 
-    COLOUR = discord.Colour.blurple()
+    COLOUR = nextcord.Colour.blurple()
 
     def get_ending_note(self):
         """Returns note to display at the bottom"""
-        prefix = self.clean_prefix
+        prefix = self.context.clean_prefix
         invoked_with = self.invoked_with
         return f"Use {prefix}{invoked_with} [command] for more info on a command."
 
@@ -20,9 +20,10 @@ class NewHelpCommand(commands.MinimalHelpCommand):
 
     async def send_bot_help(self, mapping: dict):
         """implements bot command help page"""
-        embed = discord.Embed(title="Bot Commands", colour=self.COLOUR)
+        embed = nextcord.Embed(title="Bot Commands", colour=self.COLOUR)
         embed.set_author(
-            name=self.context.bot.user.name, icon_url=self.context.bot.user.avatar_url
+            name=self.context.bot.user.name,
+            icon_url=self.context.bot.user.display_avatar.url,
         )
         description = self.context.bot.description
         if description:
@@ -33,9 +34,7 @@ class NewHelpCommand(commands.MinimalHelpCommand):
             filtered = await self.filter_commands(commands, sort=True)
             if filtered:
                 # \u2002 = en space
-                value = "\u2002".join(
-                    self.__command_and_aliases_names(filtered)
-                )
+                value = "\u2002".join(self.__command_and_aliases_names(filtered))
                 if cog and cog.description:
                     value = f"{cog.description}\n{value}"
                 embed.add_field(name=name, value=value)
@@ -45,7 +44,7 @@ class NewHelpCommand(commands.MinimalHelpCommand):
 
     async def send_cog_help(self, cog: commands.Cog):
         """implements cog help page"""
-        embed = discord.Embed(
+        embed = nextcord.Embed(
             title=f"{cog.qualified_name} Commands", colour=self.COLOUR
         )
         if cog.description:
@@ -64,7 +63,7 @@ class NewHelpCommand(commands.MinimalHelpCommand):
 
     async def send_group_help(self, group: commands.Group):
         """implements group help page and command help page"""
-        embed = discord.Embed(title=group.qualified_name, colour=self.COLOUR)
+        embed = nextcord.Embed(title=group.qualified_name, colour=self.COLOUR)
         if group.help:
             embed.description = group.help
 
@@ -81,7 +80,7 @@ class NewHelpCommand(commands.MinimalHelpCommand):
         await self.get_destination().send(embed=embed)
 
     def __command_and_aliases_names(self, filtered: list[Command]) -> list[str]:
-        prefix = self.clean_prefix
+        prefix = self.context.clean_prefix
         names_with_aliases = []
         for command in filtered:
             names_with_aliases += [f"`{prefix}{command.name}`"]

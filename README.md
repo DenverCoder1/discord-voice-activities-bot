@@ -1,16 +1,15 @@
 # Discord Voice Activities Bot
 
 [![Discord](https://img.shields.io/discord/819650821314052106?color=7289DA&logo=discord&logoColor=white)](https://discord.gg/fPrdqh3Zfu "Dev Pro Tips Discussion & Support Server")
+[![Powered by Nextcord](https://custom-icon-badges.herokuapp.com/badge/-Powered%20by%20Nextcord-0d1620?logo=nextcord)](https://github.com/nextcord/nextcord "Powered by Nextcord Python API Wrapper")
 
 A simple bot for launching Discord's activities in voice channels.
 
 [**Add the bot**](https://discord.com/api/oauth2/authorize?client_id=887066414723260517&permissions=3072&scope=bot%20applications.commands)
 
-![discord activities demo](https://user-images.githubusercontent.com/20955511/133156951-db1ad975-c3b9-4317-964c-dc965bd3d724.gif)
+![Discord activities demo](https://user-images.githubusercontent.com/20955511/133156951-db1ad975-c3b9-4317-964c-dc965bd3d724.gif)
 
 Once the bot is added, you can launch an activity with `/activity` or `>activity`.
-
-This bot makes use of [discord-together](https://github.com/apurv-r/discord-together) by apurv-r.
 
 ## Commands
 
@@ -21,14 +20,15 @@ Slash command support with `/activity`
 Legacy-style commands
 
 * `>activity` - Select from a list of activities
-* `>youtube` - Launch YouTube Together
+* `>youtube` - Launch Watch Together
 * `>poker` - Launch Poker Night
 * `>chess` - Launch Chess in the Park
+* `>checkers` - Launch Checkers in the Park
 * `>betrayal` - Launch Betrayal.io
-* `>fishing` - Launch Fishington.io
-* `>letter-tile` - Launch Letter Tile
-* `>word-snack` - Launch Word Snack
-* `>doodle-crew` - Launch Doodle Crew
+* `>fishington` - Launch Fishington.io
+* `>letterleague` - Launch Letter League
+* `>wordsnacks` - Launch Word Snack
+* `>sketchheads` - Launch Doodle Crew
 * `>help` - Shows help for legacy-style commands
 
 ## Environment Variables

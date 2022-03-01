@@ -41,6 +41,14 @@ async def _launch_response_kwargs(user: User, activity: Activity) -> Dict[str, A
     # create link
     try:
         invite = await activity.create_link(user.voice.channel)
+    except nextcord.errors.Forbidden:
+        print(traceback.print_exc(), file=sys.stderr)
+        return {
+            "embed": error_embed(
+                title="Bot is missing permissions.",
+                description="This bot requires permission to create invites.",
+            )
+        }
     except nextcord.errors.HTTPException:
         print(traceback.print_exc(), file=sys.stderr)
         return {

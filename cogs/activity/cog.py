@@ -37,22 +37,36 @@ class VoiceActivitiesCog(commands.Cog, name="🔊 Voice Activities"):
         Command to start a voice channel activity
 
         Example usage:
-        `>activity` - Select from a list of activities
-        `>youtube` - Launch Watch Together
-        `>poker` - Launch Poker Night
-        `>chess` - Launch Chess in the Park
-        `>checkers` - Launch Checkers in the Park
+        `>askaway` - Launch Ask Away
+        `>awkword` - Launch Awkword
         `>betrayal` - Launch Betrayal.io
+        `>blazing8s` - Launch Blazing 8s
+        `>bobbleleague` - Launch Bobble League
+        `>checkers` - Launch Checkers in the Park
+        `>chess` - Launch Chess in the Park
         `>fishington` - Launch Fishington.io
+        `>landio` - Launch Land.io
         `>letterleague` - Launch Letter League
-        `>wordsnacks` - Launch Word Snack
-        `>sketchheads` - Launch Doodle Crew
+        `>poker` - Launch Poker Night
+        `>puttparty` - Launch Putt Party
+        `>sketchheads` - Launch Sketch Heads
+        `>spellcast` - Launch SpellCast
+        `>wordsnacks` - Launch Word Snacks
+        `>youtube` - Launch Watch Together
         """
         # if invoked with an alias, use it as the activity key
         if ctx.invoked_with != ctx.command.name:
             # set the activity key to the alias used
             activity_key = ctx.invoked_with
         await start_activity(activity_key, ctx=ctx)
+
+    @commands.command()
+    async def testall(self, ctx: commands.Context):
+        """
+        Command to test all activities
+        """
+        for activity in Activity:
+            await start_activity(activity.key, ctx=ctx)
 
 
 def setup(client):

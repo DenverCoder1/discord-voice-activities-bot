@@ -60,14 +60,6 @@ class VoiceActivitiesCog(commands.Cog, name="🔊 Voice Activities"):
             activity_key = ctx.invoked_with
         await start_activity(activity_key, ctx=ctx)
 
-    @commands.command()
-    async def testall(self, ctx: commands.Context):
-        """
-        Command to test all activities
-        """
-        for activity in Activity:
-            await start_activity(activity.key, ctx=ctx)
-
 
 def setup(client):
     client.add_cog(VoiceActivitiesCog(client))

@@ -1,7 +1,6 @@
-from typing import Optional, Union
+from typing import Optional
 
 import nextcord
-from nextcord.embeds import EmptyEmbed, _EmptyEmbed
 
 DEFAULT_COLOUR = nextcord.Color.blurple
 
@@ -14,9 +13,7 @@ def __trim(text: str, limit: int) -> str:
 def error_embed(title: str, description: Optional[str] = None) -> nextcord.Embed:
     """Embed a message with a title and a red highlight"""
     # create the embed
-    return build_embed(
-        title=title, description=description, colour=nextcord.Colour.red()
-    )
+    return build_embed(title=title, description=description, colour=nextcord.Colour.red())
 
 
 def build_embed(
@@ -25,7 +22,7 @@ def build_embed(
     footer: Optional[str] = None,
     image: Optional[str] = None,
     thumbnail: Optional[str] = None,
-    url: Union[str, _EmptyEmbed] = EmptyEmbed,
+    url: Optional[str] = None,
     colour: nextcord.Colour = DEFAULT_COLOUR,
 ) -> nextcord.Embed:
     """Embed a message and an optional description, footer, and url"""

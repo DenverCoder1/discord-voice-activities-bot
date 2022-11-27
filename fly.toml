@@ -1,0 +1,8 @@
+# fly.toml file generated for discord-voice-activities-bot on 2022-11-26T20:25:48-07:00
+
+app = "discord-voice-activities-bot"
+kill_signal = "SIGINT"
+kill_timeout = 5
+processes = []
+
+[env]

@@ -4,13 +4,9 @@ from dotenv.main import load_dotenv
 
 load_dotenv()
 
-BOT_PREFIX = ">"
+BOT_PREFIX = []
 
 DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
 
 # Creates an integer ID list from a comma-separated string of IDs
-GUILD_IDS = [
-    int(gid)
-    for gid in os.getenv("GUILD_IDS", "").split(",")
-    if gid.isdigit()
-] or None
+GUILD_IDS = [int(gid) for gid in os.getenv("GUILD_IDS", "").split(",") if gid.isdigit()] or None

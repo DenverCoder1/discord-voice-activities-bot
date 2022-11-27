@@ -17,25 +17,6 @@ Slash command support with `/activity`
 
 ![slash command](https://user-images.githubusercontent.com/20955511/133788815-2f67757f-5092-49df-a085-a657a98830b5.png)
 
-Legacy-style commands (may stop working in the future after the bot is verified)
-
--   `>askaway` - Launch Ask Away
--   `>awkword` - Launch Awkword
--   `>betrayal` - Launch Betrayal.io
--   `>blazing8s` - Launch Blazing 8s
--   `>bobbleleague` - Launch Bobble League
--   `>checkers` - Launch Checkers in the Park
--   `>chess` - Launch Chess in the Park
--   `>fishington` - Launch Fishington.io
--   `>landio` - Launch Land.io
--   `>letterleague` - Launch Letter League
--   `>poker` - Launch Poker Night
--   `>puttparty` - Launch Putt Party
--   `>sketchheads` - Launch Sketch Heads
--   `>spellcast` - Launch SpellCast
--   `>wordsnacks` - Launch Word Snacks
--   `>youtube` - Launch Watch Together
-
 ## Environment Variables
 
 The following environment variables can be specified in a `.env` file to configure the bot for self-hosting:
